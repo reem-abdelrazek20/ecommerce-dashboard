@@ -44,10 +44,10 @@ const lowStockProducts = products.filter(
 
 
 return (
-  <div className="dashboard-layout">
+  <div className="layout">
     <Sidebar />
 
-    <div className="dashboard-main">
+    <div className="main">
       <Header />
 
       <main className="dashboard-content">

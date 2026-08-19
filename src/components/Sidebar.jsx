@@ -1,5 +1,5 @@
 import "../styles/sidedar.css";
-
+import { NavLink } from "react-router-dom";
 import { IoHomeOutline } from "react-icons/io5";
 import { CiViewList, CiSettings } from "react-icons/ci";
 import { FiShoppingCart, FiUsers, FiStar, FiLogOut } from "react-icons/fi";
@@ -10,35 +10,48 @@ function Sidebar() {
       <h2 className="logo">Shopify</h2>
 
       <nav className="sidebar-nav">
-        <a href="#" className="active">
+        <NavLink to="/" 
+          className={({ isActive }) =>
+    isActive ? "sidebar-link active" : "sidebar-link"
+  }>
           <IoHomeOutline />
           <span>Dashboard</span>
-        </a>
+        </NavLink>
 
-        <a href="#">
+        <NavLink to="/products"
+          className={({ isActive }) =>
+    isActive ? "sidebar-link active" : "sidebar-link"
+  }>
           <CiViewList />
           <span>Products</span>
-        </a>
+        </NavLink>
 
-        <a href="#">
+        <NavLink
+        to="/orders"
+          className={({ isActive }) =>
+    isActive ? "sidebar-link active" : "sidebar-link"
+  }>
           <FiShoppingCart />
           <span>Orders</span>
-        </a>
+        </NavLink>
 
-        <a href="#">
+        <NavLink  to="/customers"
+         className={({ isActive }) =>
+    isActive ? "sidebar-link active" : "sidebar-link"
+  }>
           <FiUsers />
           <span>Customers</span>
-        </a>
+        </NavLink>
 
-        <a href="#">
+        <NavLink>
           <FiStar />
           <span>Reviews</span>
-        </a>
+        </NavLink>
 
-        <a href="#">
+        <NavLink >
           <CiSettings />
           <span>Settings</span>
-        </a>
+        </NavLink>
       </nav>
 
       <button className="logout">

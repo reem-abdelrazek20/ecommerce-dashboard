@@ -1,13 +1,6 @@
-.dashboard-layout {
-  display: flex;
-  min-height: 100vh;
-}
 
-.dashboard-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
+
+
 
 .dashboard-content {
   padding: 30px;

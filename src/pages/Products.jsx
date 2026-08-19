@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
@@ -6,6 +5,8 @@ import { getProducts } from "../services/productService";
 
 function Products() {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+
 
   useEffect(() => {
     getProducts()
@@ -16,35 +17,48 @@ function Products() {
         console.log(error);
       });
   }, []);
+    const filteredProducts =products.filter((product)=>  product.title.toLowerCase().includes(search.toLowerCase()))
 
   return (
-    <div className="layout flex min-h-screen">
+    <div className="layout">
       <Sidebar />
 
-      <div className="main flex-1">
+      <div className="main">
         <Header />
 
         <main className="p-6">
-
           {/* Page Header */}
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">
-              Products
-            </h1>
+          <div className="mb-6 flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Products</h1>
 
-            <p className="mt-1 text-sm text-gray-500">
-              Manage your store products.
-            </p>
+              <p className="mt-1 text-sm text-gray-500">
+                Manage your store products.
+              </p>
+            </div>
+            <button className="rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-gray-800">
+              Add Product
+            </button>
+          </div>
+          <div className="mb-5">
+            <div className="relative max-w-md">
+              <input
+  type="search"
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+  placeholder="Search products..."
+  className="w-full rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-gray-400 focus:ring-2 focus:ring-gray-100"
+/>
+          
+           
+            </div>
           </div>
 
           {/* Products Table */}
           <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
-
-            <table className="w-full min-w-[800px]">
-
+            <table className="w-full min-w-200">
               <thead className="border-b border-gray-200 bg-gray-50">
                 <tr>
-
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
                     Product
                   </th>
@@ -64,36 +78,28 @@ function Products() {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
                     Status
                   </th>
-
                 </tr>
               </thead>
 
               <tbody>
-
-                {products.map((product) => (
-
+                {filteredProducts.map((product) => (
                   <tr
                     key={product.id}
                     className="border-b border-gray-100 last:border-0 hover:bg-gray-50"
                   >
-
                     {/* Product */}
                     <td className="px-6 py-4">
-
                       <div className="flex items-center gap-3">
-
                         <img
                           src={product.thumbnail}
                           alt={product.title}
                           className="h-12 w-12 rounded-lg border border-gray-200 object-contain"
                         />
 
-                        <span className="max-w-[220px] truncate text-sm font-medium text-gray-900">
+                        <span className="max-w-55 truncate text-sm font-medium text-gray-900">
                           {product.title}
                         </span>
-
                       </div>
-
                     </td>
 
                     {/* Category */}
@@ -113,7 +119,6 @@ function Products() {
 
                     {/* Status */}
                     <td className="px-6 py-4">
-
                       {product.stock <= 10 ? (
                         <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-medium text-red-600">
                           Low Stock
@@ -123,25 +128,16 @@ function Products() {
                           In Stock
                         </span>
                       )}
-
                     </td>
-
                   </tr>
-
                 ))}
-
               </tbody>
-
             </table>
-
           </div>
-
         </main>
-
       </div>
     </div>
   );
 }
 
 export default Products;
-

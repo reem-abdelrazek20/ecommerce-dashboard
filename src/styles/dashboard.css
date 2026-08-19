@@ -1,0 +1,170 @@
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-content {
+  padding: 30px;
+}
+
+/* Dashboard Intro */
+.dashboard-intro {
+  margin-bottom: 25px;
+}
+
+.dashboard-intro h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.dashboard-intro p {
+  margin-top: 8px;
+  color: #6b7280;
+}
+
+/* Stats Cards */
+.stats-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.stat-card {
+  flex: 1;
+}
+
+/* Charts Section */
+.dashboard-charts {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+/* Products Chart */
+.products-chart {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.chart-header {
+  margin-bottom: 20px;
+}
+
+.chart-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.chart-header p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Low Stock */
+.low-stock-card {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.low-stock-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #111827;
+}
+
+.low-stock-header p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.low-stock-list {
+  margin-top: 20px;
+}
+
+.low-stock-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.low-stock-item h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.low-stock-item span {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.stock-warning {
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #fef2f2;
+  color: #dc2626 !important;
+  white-space: nowrap;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .stats-cards {
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    flex: 1 1 45%;
+  }
+
+  .dashboard-charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding: 20px;
+  }
+
+  .stats-cards {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .stat-card {
+    width: 100%;
+  }
+
+  .dashboard-charts {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .products-chart,
+  .low-stock-card {
+    padding: 18px;
+  }
+
+  .dashboard-intro h1 {
+    font-size: 24px;
+  }
+}

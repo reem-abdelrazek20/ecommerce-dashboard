@@ -4,9 +4,9 @@ import { getProducts, getCarts } from "../services/productService";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import "../styles/dashboard.css";
-import StatCard from "../components/StatCard";
-import ProductsChart from "../components/ProductsChart";
-import LowStock from "../components/LowStock";
+import StatCard from "../components/componentDashboard/StatCard";
+import ProductsChart from "../components/componentDashboard/ProductsChart";
+import LowStock from "../components/componentDashboard/LowStock";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { FiAlertTriangle ,FiShoppingCart,FiPackage  } from "react-icons/fi";
 

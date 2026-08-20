@@ -1,0 +1,135 @@
+import { useEffect, useState } from "react";
+
+import { FaRegTrashAlt } from "react-icons/fa";
+export default function ProductTable({ products }) {
+  const [deleteProduct, setDeleteProduct] = useState(null);
+
+  return (
+    <>
+      <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <table className="w-full min-w-200">
+          <thead className="border-b border-gray-200 bg-gray-50">
+            <tr>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                Product
+              </th>
+
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                Category
+              </th>
+
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                Price
+              </th>
+
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                Stock
+              </th>
+
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                Status
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {products.map((product) => (
+              <tr
+                key={product.id}
+                className="border-b border-gray-100 last:border-0 hover:bg-gray-50"
+              >
+                {/* Product */}
+                <td className="px-6 py-4">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={product.thumbnail}
+                      alt={product.title}
+                      className="h-12 w-12 rounded-lg border border-gray-200 object-contain"
+                    />
+
+                    <span className="max-w-55 truncate text-sm font-medium text-gray-900">
+                      {product.title}
+                    </span>
+                  </div>
+                </td>
+
+                {/* Category */}
+                <td className="px-6 py-4 text-sm capitalize text-gray-600">
+                  {product.category}
+                </td>
+
+                {/* Price */}
+                <td className="px-6 py-4 text-sm font-semibold text-gray-900">
+                  ${product.price}
+                </td>
+
+                {/* Stock */}
+                <td className="px-6 py-4 text-sm text-gray-600">
+                  {product.stock}
+                </td>
+
+                {/* Status */}
+                <td className="px-6 py-4">
+                  {product.stock <= 10 ? (
+                    <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-medium text-red-600">
+                      Low Stock
+                    </span>
+                  ) : (
+                    <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-600">
+                      In Stock
+                    </span>
+                  )}
+                </td>
+                <td className="px-6 py-4 text-sm">
+                  <button
+                    onClick={() => setDeleteProduct(product)}
+                    className="text-gray-500 transition hover:text-red-600"
+                    aria-label="Delete product"
+                  >
+                    <FaRegTrashAlt />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {deleteProduct && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+            <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+              <h2 className="text-lg font-semibold text-gray-900">
+                Delete Product
+              </h2>
+
+              <p className="mt-2 text-sm text-gray-500">
+                Are you sure you want to delete{" "}
+                <span className="font-medium text-gray-900">
+                  {deleteProduct.title}
+                </span>
+                ?
+              </p>
+
+              <div className="mt-6 flex justify-end gap-3">
+                <button
+                  onClick={() => setDeleteProduct(null)}
+                  className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
+                >
+                  Cancel
+                </button>
+
+                <button
+                  onClick={() => {
+                    console.log("Delete:", deleteProduct.id);
+                    setDeleteProduct(null);
+                  }}
+                  className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}

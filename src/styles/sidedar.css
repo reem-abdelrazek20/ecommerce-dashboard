@@ -1,15 +1,17 @@
 .sidebar {
-  width: 200px;
-  min-height: 100vh;
-  padding: 0px 16px;
-  background-color: #ffffff;
+  background-color: #fff;
   border-right: 1px solid #e5e7eb;
-
   display: flex;
   flex-direction: column;
+  width: 200px;
+  height: 100vh;
+  padding: 0 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
-
 .logo {
+  margin-top: auto;
   margin-bottom: 20px;
   font-size: 24px;
 }

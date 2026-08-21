@@ -15,6 +15,14 @@ export const getUsers = () => {
   return api.get("/users");
 };
 
+// Users / admin
+export const loginUser = (username, password) => {
+  return api.post("/auth/login", {
+    username,
+    password,
+  });
+};
+
 // Reviews
 export const getReviews = () => {
   return api.get("/comments");
